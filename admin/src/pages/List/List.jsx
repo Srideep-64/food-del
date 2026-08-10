@@ -75,7 +75,7 @@ const [selectedCategory, setSelectedCategory] = useState("All");
               <img src={`${url}/images/`+item.image} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
-              <p>${item.price}</p>
+              <p>₹{item.price}</p>
               <p onClick={() =>{ setEditData(item); navigate('/add'); }} className='cursor'>Edit</p>
               <p onClick={()=>removeFood(item._id)}className='cursor'>X</p>
             </div>

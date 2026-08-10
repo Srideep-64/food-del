@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url ="https://food-del-backend-syzv.onrender.com"
+  const url ="https://food-del-backend-aycw.onrender.com"
   const [token,setToken] = useState("");
   const [food_list,setFoodList] = useState([])
 
@@ -31,7 +31,9 @@ const StoreContextProvider = (props) => {
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id === item);
+        if(itemInfo){
         totalAmount += itemInfo.price * cartItems[item];
+        }
       }
     }
     return totalAmount;
@@ -44,7 +46,7 @@ const StoreContextProvider = (props) => {
 
   const loadCartData = async (token) => {
     const response = await axios.post(url+"/api/cart/get",{},{headers:{token}});
-    setCartItems(response.data.cartData);
+    setCartItems(response.data.cartData || {});
   }
 
   useEffect(()=>{
