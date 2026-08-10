@@ -22,6 +22,7 @@ A full-stack food ordering platform where users can browse a food menu, add item
 - JWT (authentication)
 - Multer (image uploads)
 - Stripe (payment gateway)
+- Google Gemini API (AI-powered chatbot)
 
 ## Features
 
@@ -33,6 +34,10 @@ A full-stack food ordering platform where users can browse a food menu, add item
 - Admin panel to add/remove food items
 - Admin panel to view and update order status
 - Image upload for food items
+- AI-powered chatbot for mood/diet-based food recommendations (Gemini API)
+
+## AI Recommendation Chatbot
+Users can chat with an AI assistant describing their mood or dietary preference (e.g. "I'm feeling low and want something comforting"). The assistant reasons over the actual menu data using Google's Gemini API and recommends relevant items — grounded strictly in existing food items to prevent hallucinated suggestions — along with a short reason for each pick.
 
 ## Project Structure
 
@@ -60,6 +65,7 @@ Create a `.env` file in `backend/`:
 MONGO_URI=
 JWT_SECRET=
 STRIPE_SECRET_KEY=
+GEMINI_API_KEY=
 ```
 Run the server:
 ```bash
@@ -88,6 +94,7 @@ npm run dev
 | `/api/food` | Add, list, remove food items |
 | `/api/cart` | Add, remove, get cart items |
 | `/api/order` | Place order, verify payment, list orders |
+| `/api/chatbot` | AI-powered food recommendation based on mood/diet |
 
 ## License
 
