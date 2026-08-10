@@ -9,7 +9,7 @@ import userRouter from "./routes/userRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import chatbotRouter from "./routes/chatbotRoute.js";
-
+import connectCloudinary from "./config/cloudinary.js";
 
 // app config
 const app=express()
@@ -24,6 +24,8 @@ connectDB().catch((err) => {
   console.error("DB connection failed:", err.message);
   process.exit(1);
 });
+
+connectCloudinary();
 
 // api endpoints
 app.use("/api/food",foodRouter)
