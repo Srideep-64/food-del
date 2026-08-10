@@ -19,7 +19,7 @@ const ChatMessage = ({ message }) => {
         <div className="chat-food-cards">
           {recommendedItems.map(item => (
             <div className="chat-food-card" key={item._id}>
-              <img src={url + "/images/" + item.image} alt={item.name} />
+              <img src={item.image} alt={item.name} />
               <div className="chat-food-card-info">
                 <p className="chat-food-name">{item.name}</p>
                 <p className="chat-food-price">₹{item.price}</p>
