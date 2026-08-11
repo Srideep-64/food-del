@@ -59,9 +59,11 @@ useEffect(()=>{
                 </div>
                 <p className='order-item-phone'>{order.address.phone}</p>
               </div>
-              <p>Items : {order.items.length}</p>
-              <p>${order.amount}</p>{
-                <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
+           <p>Items : {order.items.length}</p>
+            <p>₹{order.amount}</p>
+            <p className='order-item-date'>{new Date(order.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}, {new Date(order.date).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</p>
+            {
+              <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
                   <option value="Food Processing">Food Processing</option>
                   <option value="Out for delivery">Out for delivery</option>
                   <option value="Deliverd">Deliverd</option>
