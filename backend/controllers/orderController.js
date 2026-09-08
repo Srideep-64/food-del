@@ -21,7 +21,7 @@ const placeOrder = async (req, res) => {
             address:req.body.address
         })
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
+       
 
         const line_items = req.body.items.map((item)=>({
             price_data:{
@@ -64,6 +64,8 @@ const verifyOrder = async (req,res) =>{
     try {
         if(success=="true"){
             await orderModel.findByIdAndUpdate(orderId,{payment:true});
+            // clear cart only on real success
+            await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
             res.json({success:true,message:"Paid"})
         }
         else{
@@ -79,7 +81,7 @@ const verifyOrder = async (req,res) =>{
 //User orders for frontend
 const userOrders = async (req,res)=>{
     try {
-        const orders = await orderModel.find({userId:req.body.userId});
+        const orders = await orderModel.find({userId:req.body.userId,payment:true});// only paid orders
         res.json({success:true,data:orders})
     } catch (error) {
         console.log(error);
@@ -90,7 +92,7 @@ const userOrders = async (req,res)=>{
 // Listing orders for admin panel
 const listOrders = async(req,res)=>{
     try {
-        const orders = await orderModel.find({});
+        const orders = await orderModel.find({payment:true});
         res.json({success:true,data:orders})
     } catch (error) {
         console.log(error);
