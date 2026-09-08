@@ -63,7 +63,7 @@ const verifyOrder = async (req,res) =>{
     const {orderId,success} =req.body;
     try {
         if(success=="true"){
-            await orderModel.findByIdAndUpdate(orderId,{payment:true});
+          const order =  await orderModel.findByIdAndUpdate(orderId,{payment:true});
             // clear cart only on real success
             await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
             res.json({success:true,message:"Paid"})
