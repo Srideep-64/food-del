@@ -41,7 +41,7 @@ const MyOrders = () => {
                     <p>Items:{order.items.length}</p>
                     <p className='my-orders-date'>{new Date(order.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}, {new Date(order.date).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</p>
                     <p><span>&#x25cf;</span> <b>{order.status}</b></p>
-                    <button onClick={fetchOrders}>Track Order</button>
+                    
                 </div>
             )
         })}
