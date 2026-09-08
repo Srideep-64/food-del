@@ -10,6 +10,7 @@ import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import chatbotRouter from "./routes/chatbotRoute.js";
 import connectCloudinary from "./config/cloudinary.js";
+import errorHandler from "./middleware/errorhandler.js";
 
 // app config
 const app=express()
@@ -29,7 +30,6 @@ connectCloudinary();
 
 // api endpoints
 app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
 app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
@@ -38,6 +38,8 @@ app.use("/api/chatbot",chatbotRouter);
 app.get("/",(req,res)=>{
   res.send("API Working")
 })
+
+app.use(errorHandler)
 
 app.listen(port,()=>{
   console.log(`Server Started on http://localhost:${port}`)

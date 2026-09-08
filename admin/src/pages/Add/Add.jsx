@@ -122,7 +122,7 @@ const Add = ({url,editData,setEditData}) => {
           </div>
           <div className="add-price flex-col">
             <p>Product price</p>
-            <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='$20'/>
+            <input onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='₹120'/>
           </div>
         </div>
         <button type='submit' className='add-btn'>
