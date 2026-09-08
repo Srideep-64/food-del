@@ -9,12 +9,13 @@ const Verify = () => {
     const [searchParams,setSearchParams] = useSearchParams();
     const success = searchParams.get("success")
     const orderId = searchParams.get("orderId")
-    const {url} = useContext(StoreContext);
+    const {url,setCartItems} = useContext(StoreContext);
     const navigate = useNavigate();
 
     const verifyPayment = async() =>{
         const response = await axios.post(url+"/api/order/verify",{success,orderId});
         if(response.data.success){
+                setCartItems({});// clear frontend cart state immediately on confirmed success
                 navigate("/myorders");
         }
         else{
